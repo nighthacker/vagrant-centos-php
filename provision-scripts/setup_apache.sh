@@ -1,5 +1,6 @@
 #!/bin/sh
-echo "------>>> Starting Webserver setup"
+echo "      ================================================================================"
+echo ">>>>>>>>>>>>>> Starting Webserver setup"
 
 #Install Apache Http Server
 yum -y install httpd
