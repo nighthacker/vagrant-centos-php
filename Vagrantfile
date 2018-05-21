@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "centos/7"
-  config.vm.hostname = "machine-hostname"
+  config.vm.hostname = "machine-hostname.dev"
 
   config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__auto: true
 
@@ -17,12 +17,16 @@ Vagrant.configure("2") do |config|
 
 
   # Provision env tools (repos, tools, etc)
-  config.vm.provision "shell", path: "provision-scripts/setup_tools.sh"
+  config.vm.provision 'shell' do |s|
+    ssl_verification = 0
+    s.path = 'provision-scripts/setup_tools.sh'
+    s.args = [ssl_verification]
+  end
 
   # Provision HTTP server
   config.vm.provision 'shell' do |s|
     apache_servername = 'machine-hostname.dev'
-    apache_dirpath = '/vagrant'
+   apache_dirpath = '/vagrant'
     apache_port = '80'
     apache_directives = ''
     s.path = 'provision-scripts/setup_apache.sh'
@@ -37,7 +41,7 @@ Vagrant.configure("2") do |config|
   # Provision MariaDB
   config.vm.provision 'shell' do |s|
     mariadb_username = 'username'
-    mariadb_password = 'password'
+    mariadb_password = 'username'
     mariadb_rootpassword = 'root'
     mariadb_database = 'dbname'
     s.path = 'provision-scripts/setup_mariadb.sh'
