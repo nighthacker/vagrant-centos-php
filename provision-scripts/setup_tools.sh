@@ -1,9 +1,16 @@
 #!/bin/sh
+echo "      ================================================================================"
+echo ">>>>>>>>>>>>>> Starting General Environment setup (system tools, repositories, etc.)"
+                                  i
 
-echo "------>>> Starting General Environment setup (system tools, repositories, etc.)"
+ssl_verification=$1
+if [ "$ssl_verification" = 0 ] ; then
+    echo 'YUM - SSL VERIFICATION TURNED OFF'
+    sed -i '/[main]/a sslverify=0' /etc/yum.conf
+fi
 
 #Disable SELINUX
-sed -i "s/SELINUX=enforcing/SELINUX=disabled/" /etc/selinux/conf
+sed -i "s/SELINUX=enforcing/SELINUX=disabled/" /etc/selinux/config
 setenforce 0
 
 #Install required repository with nginx
