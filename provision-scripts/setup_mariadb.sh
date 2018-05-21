@@ -1,5 +1,6 @@
 #!/bin/sh
-echo "------>>> Starting Database setup"
+echo "      ================================================================================"
+echo ">>>>>>>>>>>>>> Starting Database setup"
 
 USERNAME="$1"
 PASSWORD="$2"
