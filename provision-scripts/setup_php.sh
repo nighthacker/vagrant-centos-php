@@ -1,6 +1,7 @@
 #!/bin/sh
+echo "      ================================================================================"
+echo ">>>>>>>>>>>>>> Starting PHP  setup"
 
-echo "------>>> Starting PHP  setup"
 #Install PHP
 yum -y install php
 
